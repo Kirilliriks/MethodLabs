@@ -1,8 +1,6 @@
 #include <iostream>
 #include <cmath>
 
-// 3.14159/180
-
 float func(float x) {
     return x - 5 * std::sin(x);
 }
