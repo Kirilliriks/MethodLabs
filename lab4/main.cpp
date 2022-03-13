@@ -11,7 +11,7 @@ float function(float x) {
 }
 
 int main() {
-    float first = 0-1;
+    float first = -1;
     float second = 0;
     float accuracy = 0.00001f;
     float m = 1;
