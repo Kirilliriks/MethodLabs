@@ -8,10 +8,10 @@ const int N = 4;
 
 void reverse(float *matrix, float *vectB, int k, int r) {
     float c;
-    for (int i = k; i < N; i++) {
-        c = matrix[k + i * N];
-        matrix[k + i * N] = matrix[r + i * N];
-        matrix[r + i * N] = c;
+    for (int j = k; j < N; j++) {
+        c = matrix[k + j * N];
+        matrix[k + j * N] = matrix[r + j * N];
+        matrix[r + j * N] = c;
     }
     c = vectB[k];
     vectB[k] = vectB[r];
@@ -19,15 +19,15 @@ void reverse(float *matrix, float *vectB, int k, int r) {
 }
 
 void divide(float *matrix, float *vectB, int k) {
-    for (int i = k + 1; i < N; i++) {
-        matrix[k + i * N] /= matrix[k + k * N];
+    for (int j = k + 1; j < N; j++) {
+        matrix[k + j * N] /= matrix[k + k * N];
     }
     vectB[k] /= matrix[k + k * N];
 }
 
 void clear(float *matrix, float *vectB, int k, int r) {
-    for (int i = k + 1; i < N; i++) {
-        matrix[r + i * N] -= matrix[k + i * N] * matrix[r + k * N];
+    for (int j = k + 1; j < N; j++) {
+        matrix[r + j * N] -= matrix[k + j * N] * matrix[r + k * N];
     }
     vectB[r] -= vectB[k] * matrix[r + k * N];
 }
@@ -39,11 +39,15 @@ int main() {
     int i, j, k;
 
     matrix = new float[N * N] {
-            1, -1,  2,  3,
-            2,  1,  0,  2,
-            1,  3,  1, -1,
-            2,-3,  1,  0
+            1, 2,  1,  2,
+            -1,  1,  3,  -3,
+            2,  0,  1, 1,
+            3,2,  -1,  0
     };
+
+    /*
+            
+     */
 
     vectB = new float[N] {
             1,2,-1,3
@@ -63,6 +67,13 @@ int main() {
         }
     }
     divide(matrix, vectB, N - 1);
+
+    for (int D = 0; D < N; D++) {
+        for (int G = 0; G < N; G++) {
+            std::cout << " " << matrix[G + D * N] << " ";
+        }
+        std::cout << std::endl;
+    }
 
     for (i = N - 1; i >= 0; i--) {
         vectX[i] = vectB[i];
